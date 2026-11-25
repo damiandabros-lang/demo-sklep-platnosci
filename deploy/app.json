@@ -1,0 +1,1 @@
+{"name":"demo-sklep-platnosci","subdomain":"demo-sklep","web_service":"web","port":3000,"compose":"/docker-compose.yml","check_path":"/","env":{},"generate_secrets":[]}

@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run lint && npm test && npm run build
+      - run: npx playwright@1 install --with-deps chromium
+      - run: |
+          npm i --no-save playwright@1
+          (cp -r .next/static .next/standalone/.next/ && cd .next/standalone && DATA_DIR=/tmp/d PORT=3000 node server.js &) && sleep 5 && node tests/e2e/sklep.mjs

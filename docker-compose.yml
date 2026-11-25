@@ -1,0 +1,19 @@
+# DEMO Isvero Studio – sklep z płatnościami testowymi (Next.js). Osobna aplikacja Coolify; domena tylko na "web" (port 3000).
+# Opcjonalnie: STRIPE_SECRET_KEY (TYLKO sk_test_...) i STRIPE_WEBHOOK_SECRET jako zmienne Coolify. Bez nich działa symulacja bramki.
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+    volumes:
+      - sklep_data:/data
+    expose:
+      - "3000"
+    deploy:
+      resources:
+        limits: { memory: 256M, cpus: "0.5" }
+    logging: { driver: json-file, options: { max-size: "10m", max-file: "3" } }
+volumes:
+  sklep_data:

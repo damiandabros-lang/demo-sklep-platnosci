@@ -1,0 +1,30 @@
+{
+  "name": "demo-sklep-platnosci",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DEMO Isvero Studio: sklep internetowy z koszykiem i p\u0142atno\u015bciami w trybie testowym (Next.js, TypeScript, Stripe test mode). Dane fikcyjne.",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types tests/unit/*.test.ts",
+    "test:e2e": "node tests/e2e/sklep.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.29",
+    "react": "19.1.10",
+    "react-dom": "19.1.10"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.6",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
+    "typescript": "5.9.2",
+    "axe-core": "4.10.2"
+  },
+  "overrides": {
+    "postcss": "8.5.33",
+    "sharp": "0.35.5"
+  }
+}
