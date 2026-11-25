@@ -6,7 +6,7 @@ export default function Produkty() {
   return (
     <>
       <h1>Produkty</h1>
-      <p>Sklep demonstracyjny: koszyk, zamówienie z walidacją, podsumowanie VAT według stawek i płatność w trybie testowym (Stripe test mode: karta, BLIK, Przelewy24 lub wbudowana symulacja bramki).</p>
+      <p>Sklep demonstracyjny: koszyk, zamówienie z walidacją, podsumowanie VAT według stawek i płatność w trybie testowym przez wbudowaną symulację bramki (kod obsługuje też Stripe w trybie testowym – karta, BLIK, Przelewy24 – na tej instancji wyłączony).</p>
       <ul className="grid">
         {PRODUKTY.map((p) => (
           <li key={p.slug} className="card">
