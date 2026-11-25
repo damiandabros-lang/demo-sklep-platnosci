@@ -19,7 +19,7 @@ export default async function Strona({ params }: { params: Promise<{ slug: strin
       <svg className="prod-img" style={{ maxWidth: "24rem" }} viewBox="0 0 160 120" role="img" aria-label={`Ilustracja produktu: ${p.nazwa}`}><rect width="160" height="120" fill={p.kolor} /><circle cx="80" cy="60" r="28" fill="#fff" opacity=".85" /></svg>
       <p>{p.opis}</p>
       <p className="price">{zl(p.cenaBruttoGr)} <span className="hint">brutto, VAT {p.vat}%</span></p>
-      <p>Dostępność: {p.stan > 0 ? `${p.stan} szt.` : "brak"}</p>
+      <p>Dostępność: {p.stan > 0 ? `${p.stan} szt.` : "chwilowo niedostępny"}</p>
       {p.stan > 0 && (
         <form action={dodaj} className="row">
           <input type="hidden" name="slug" value={p.slug} />

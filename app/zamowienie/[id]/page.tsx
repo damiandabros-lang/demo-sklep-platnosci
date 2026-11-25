@@ -17,8 +17,8 @@ export default async function Zamowienie({ params, searchParams }: { params: Pro
     <>
       <h1>Zamówienie {z.id}</h1>
       <p role="status">Status: <span className="status">{NAZWY[z.status]}</span></p>
-      {wynik === "ok" && z.status !== "oplacone" && <p className="hint">Płatność testowa zakończona – czekamy na potwierdzenie (webhook Stripe). Odśwież stronę za chwilę.</p>}
-      {wynik === "anulowano" && <p className="hint">Płatność anulowana w Stripe (tryb testowy).</p>}
+      {z.metoda === "stripe" && wynik === "ok" && z.status !== "oplacone" && <p className="hint">Płatność testowa zakończona – czekamy na potwierdzenie (webhook Stripe). Odśwież stronę za chwilę.</p>}
+      {z.metoda === "stripe" && wynik === "anulowano" && <p className="hint">Płatność anulowana w Stripe (tryb testowy).</p>}
       <p>Do zapłaty: <strong>{zl(z.doZaplatyGr)}</strong> · Zamawiający: {z.imie}, {z.miasto}</p>
       <ul>{s.linie.map((l) => <li key={l.produkt.slug}>{l.produkt.nazwa} × {l.ilosc} – {zl(l.bruttoGr)}</li>)}</ul>
       {z.metoda === "symulacja" && z.status === "oczekuje_na_platnosc" && (
