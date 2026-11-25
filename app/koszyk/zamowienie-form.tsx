@@ -12,7 +12,7 @@ export function ZamowienieForm({ stripe }: { stripe: boolean }) {
   const pole = (id: string, label: string, extra: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
     <div className="field">
       <label htmlFor={id}>{label} *</label>
-      <input id={id} name={id} defaultValue={w[id]} aria-invalid={!!b[id]} aria-describedby={b[id] ? `${id}-err` : undefined} {...extra} />
+      <input id={id} name={id} required defaultValue={w[id]} aria-invalid={!!b[id]} aria-describedby={b[id] ? `${id}-err` : undefined} {...extra} />
       {b[id] && <p className="err" id={`${id}-err`}>{b[id]}</p>}
     </div>
   );
@@ -21,13 +21,14 @@ export function ZamowienieForm({ stripe }: { stripe: boolean }) {
       {Object.keys(b).length > 0 && (
         <div className="error-summary" role="alert" tabIndex={-1} ref={ref}>
           <h3>Popraw dane zamówienia</h3>
-          <ul>{Object.entries(b).map(([k, v]) => <li key={k}><a href={`#${k}`}>{POLA[k]}: {v}</a></li>)}</ul>
+          <ul>{Object.entries(b).map(([k, v]) => <li key={k}>{k === "koszyk" ? <a href="/koszyk">Koszyk: {v}</a> : <a href={`#${k}`}>{POLA[k]}: {v}</a>}</li>)}</ul>
         </div>
       )}
+      <p className="hint">Pola oznaczone gwiazdką (*) są wymagane. Wpisuj wyłącznie fikcyjne dane.</p>
       {pole("imie", "Imię i nazwisko", { autoComplete: "name" })}
       {pole("email", "E-mail", { type: "email", autoComplete: "email" })}
       {pole("ulica", "Ulica i numer", { autoComplete: "street-address" })}
-      {pole("kod", "Kod pocztowy", { autoComplete: "postal-code", inputMode: "numeric" })}
+      {pole("kod", "Kod pocztowy", { autoComplete: "postal-code", inputMode: "text", placeholder: "00-000" })}
       {pole("miasto", "Miejscowość", { autoComplete: "address-level2" })}
       <fieldset className="field">
         <legend>Metoda płatności</legend>
@@ -35,7 +36,7 @@ export function ZamowienieForm({ stripe }: { stripe: boolean }) {
         <div className="check"><input type="radio" id="m-stripe" name="metoda" value="stripe" defaultChecked={stripe} disabled={!stripe} aria-describedby="stripe-hint" /><label htmlFor="m-stripe">Karta / BLIK / Przelewy24 – Stripe, tryb testowy</label></div>
         <p className="hint" id="stripe-hint">{stripe ? "Użyj testowej karty 4242 4242 4242 4242 – żadne pieniądze nie zostaną pobrane." : "Stripe nieskonfigurowany w tym wdrożeniu – dostępna jest symulacja."}</p>
       </fieldset>
-      <div className="field check"><input type="checkbox" id="regulamin" name="regulamin" aria-invalid={!!b.regulamin} aria-describedby={b.regulamin ? "regulamin-err" : undefined} /><label htmlFor="regulamin">Akceptuję <a href="/regulamin">regulamin sklepu demo</a>. *</label></div>
+      <div className="field check"><input type="checkbox" id="regulamin" name="regulamin" required aria-invalid={!!b.regulamin} aria-describedby={b.regulamin ? "regulamin-err" : undefined} /><label htmlFor="regulamin">Akceptuję <a href="/regulamin">regulamin sklepu demo</a>. *</label></div>
       {b.regulamin && <p className="err" id="regulamin-err">{b.regulamin}</p>}
       <button className="btn" type="submit" disabled={trwa}>{trwa ? "Przetwarzanie…" : "Zamawiam i płacę (test)"}</button>
     </form>

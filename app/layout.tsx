@@ -23,7 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <a className="brand" href="/">Sklep Przykładowo<small>sklep demonstracyjny</small></a>
             <nav aria-label="Menu główne"><ul>
               <li><a href="/">Produkty</a></li>
-              <li><a href="/koszyk">Koszyk ({ilosc})<span className="sr-only"> produktów</span></a></li>
+              <li><a href="/koszyk">Koszyk ({ilosc})<span className="sr-only"> — liczba produktów</span></a></li>
               <li><a href="/regulamin">Regulamin (demo)</a></li>
             </ul></nav>
           </div>
