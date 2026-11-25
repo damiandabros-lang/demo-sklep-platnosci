@@ -2,6 +2,8 @@
 
 > **Projekt pokazowy (portfolio) Isvero Studio, listopad 2026 r.** Nie jest to prawdziwy sklep ani realizacja dla klienta. Produkty i ceny są fikcyjne, a płatności działają **wyłącznie w trybie testowym** – nic nie jest sprzedawane ani obciążane.
 
+**Demo na żywo:** https://demo-sklep.isverostudio.com (noindex)
+
 ## Co pokazuje
 - katalog produktów, karta produktu, stany magazynowe (produkt niedostępny),
 - koszyk w ciasteczku `HttpOnly` (Server Actions, działa bez JavaScriptu): dodawanie, zmiana ilości, usuwanie, limity ilości,
